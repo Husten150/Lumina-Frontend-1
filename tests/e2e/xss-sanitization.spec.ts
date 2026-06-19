@@ -110,8 +110,6 @@ test.describe("XSS Sanitization — NodeCard rendering", () => {
         document.body.removeChild(container);
       }
 
-      // Final cleanup
-      document.body.removeChild(container);
       window.__XSS_TEST__ = false;
 
       return results;

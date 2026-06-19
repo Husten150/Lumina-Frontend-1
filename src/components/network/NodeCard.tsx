@@ -149,7 +149,7 @@ export function NodeCard({
       }}
       role="button"
       tabIndex={0}
-      aria-label={`Node: ${node.label ?? node.id}`}
+      aria-label={`Node: ${(node.label ?? node.id).replace(/<[^>]*>/g, '')}`}
     >
       {/* Header */}
       <div className="flex items-start justify-between gap-3 border-b border-[#ece5d8] px-4 py-3">

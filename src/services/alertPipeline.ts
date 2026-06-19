@@ -5,6 +5,7 @@
  */
 
 import { DecodedEvent, AlertSeverity } from "../utils/eventDecoder";
+export type { AlertSeverity };
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 

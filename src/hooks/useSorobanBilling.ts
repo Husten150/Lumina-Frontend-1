@@ -94,6 +94,20 @@ export function useSorobanBilling(defaultContext: ErrorDecodeContext = {}) {
     refresh: refreshQueue,
   } = useTxRetryQueue();
 
+  const decodeBillingError = useCallback(
+    (error: unknown, context: ErrorDecodeContext = {}) => {
+      const decodedError = resolveError(
+        error,
+        { ...defaultContext, ...context },
+        reportUnknownStellarError,
+      );
+
+      setBillingError(decodedError);
+      return decodedError;
+    },
+    [defaultContext],
+  );
+
   const submitWithQueue = useCallback(
     async (params: {
       contractId: string;
@@ -238,20 +252,6 @@ export function useSorobanBilling(defaultContext: ErrorDecodeContext = {}) {
       }
     },
     [queryClient, queryKey, enqueue, refetch, decodeBillingError],
-  );
-
-  const decodeBillingError = useCallback(
-    (error: unknown, context: ErrorDecodeContext = {}) => {
-      const decodedError = resolveError(
-        error,
-        { ...defaultContext, ...context },
-        reportUnknownStellarError,
-      );
-
-      setBillingError(decodedError);
-      return decodedError;
-    },
-    [defaultContext],
   );
 
   return {
